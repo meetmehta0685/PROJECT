@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Book</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Assign Book</h2>
+        <p id="book-info"></p>
+        <form>
+            <input type="text" id="student-id" placeholder="Student ID" required>
+            <input type="text" id="student-name" placeholder="Student Name" required>
+            <input type="text" id="contact" placeholder="Contact Number" required>
+            <button type="submit">Assign Book</button>
+        </form>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookIndex = urlParams.get("book");
+        const books = [
+            { title: "Book 1", available: true },
+            { title: "Book 2", available: false },
+            { title: "Book 3", available: true }
+        ];
+        if (bookIndex !== null) {
+            document.getElementById("book-info").textContent = `Selected Book: ${books[bookIndex].title} - ${books[bookIndex].available ? "Available" : "Not Available"}`;
+        }
+    </script>
+</body>
+</html>

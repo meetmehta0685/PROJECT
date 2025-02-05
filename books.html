@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .top-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .book-table {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .book-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .book-row:hover {
+            background: #f0f0f0;
+        }
+        .book-title {
+            flex: 1;
+            text-align: left;
+            font-weight: bold;
+        }
+        .availability {
+            display: none;
+            font-size: 14px;
+            color: green;
+        }
+        .book-row:hover .availability {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar" id="librarian-display"></div>
+    <div class="container">
+        <h2>Computer Science Engineering Books</h2>
+        <div class="book-table" id="book-list"></div>
+    </div>
+    <script>
+        const librarianName = localStorage.getItem("librarianName") || "Unknown";
+        document.getElementById("librarian-display").textContent = "Librarian: " + librarianName;
+        const books = [
+            { title: "Introduction to Algorithms", available: 10 },
+            { title: "Artificial Intelligence: A Modern Approach", available: 7 },
+            { title: "Computer Networking: A Top-Down Approach", available: 12 },
+            { title: "Database System Concepts", available: 5 },
+            { title: "Operating System Concepts", available: 8 },
+            { title: "Clean Code: A Handbook of Agile Software Craftsmanship", available: 3 },
+            { title: "The Pragmatic Programmer", available: 6 },
+            { title: "Structure and Interpretation of Computer Programs", available: 9 },
+            { title: "Computer Organization and Design", available: 4 },
+            { title: "Machine Learning Yearning", available: 7 },
+            { title: "Deep Learning", available: 6 },
+            { title: "You Don't Know JS", available: 5 },
+            { title: "Design Patterns: Elements of Reusable Object-Oriented Software", available: 8 },
+            { title: "Code Complete", available: 10 },
+            { title: "Data Science for Business", available: 3 },
+            { title: "Compilers: Principles, Techniques, and Tools", available: 6 },
+            { title: "The Art of Computer Programming", available: 2 },
+            { title: "Cybersecurity Essentials", available: 7 },
+            { title: "Programming in Python 3", available: 8 },
+            { title: "Software Engineering: A Practitioner's Approach", available: 9 }
+        ];
+        const bookList = document.getElementById("book-list");
+        books.forEach((book, index) => {
+            const row = document.createElement("div");
+            row.classList.add("book-row");
+
+            row.innerHTML = `
+                <div class="book-title">${book.title}</div>
+                <div class="availability">Available: ${book.available}</div>
+            `;
+
+            bookList.appendChild(row);
+        });
+    </script>
+</body>
+</html>
